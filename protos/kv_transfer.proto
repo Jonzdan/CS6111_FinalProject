@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package kvtransfer;
+
+message SendQueueItem {
+    string tensor_id = 1;        // e.g., "layer_0_k"
+    string remote_address = 2;   // destination worker
+    bytes tensor = 3;            // serialized tensor (float32 / numpy.tobytes)
+}
+
+message KVBatch {
+    repeated SendQueueItem items = 1;
+}
+
+message Ack {
+    bool success = 1;
+}
+
+service KVTransfer {
+    rpc PutBatch (KVBatch) returns (Ack);
+    rpc GetBatch (KVBatch) returns (KVBatch);
+}
