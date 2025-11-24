@@ -28,7 +28,7 @@ class KVTransferService(KVTransferServicer):
                 continue
 
             buffer = io.BytesIO()
-            torch.save(tensor.cpu(), buf)
+            torch.save(tensor.cpu(), buffer)
 
             response.items.append(
                 SendQueueItem(

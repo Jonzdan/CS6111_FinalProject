@@ -4,6 +4,8 @@ from vllm.distributed.kv_transfer.kv_connector.v1 import KVConnectorBase_V1, KVC
 # Notes
 # scheduler_cls - target class for new scheduler
 # also has kv_transfer_config, for which disaggregated stage
+# Credit from vLLM github examples 
+
 from vllm.config import VllmConfig
 from src.inference.shared.engine import P2pEngine
 from vllm.distributed.parallel_state import get_world_group
